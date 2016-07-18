@@ -18,12 +18,12 @@ public class MetricaDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-//	public Metrica getMetrica(Long id) {
-//		return this.jdbcTemplate
-//			.queryForObject(
-//				"select * from metrica where id = ?", 
-//				Metrica.class, id);
-//	}
+	public Metrica getMetrica(Long id) {
+		return this.jdbcTemplate
+			.queryForObject(
+				"select * from metrica where id = ?", 
+				new MetricaRowMapper(), id);
+	}
 	
 	public List<Metrica> getMetricas() {
 		return this.jdbcTemplate
@@ -34,7 +34,7 @@ public class MetricaDao {
 
 	public int createMetrica(Metrica metrica) {
 		return jdbcTemplate.update(
-			"insert into metrica (nome,created) values (?,?)", 
+			"insert into metrica (name,created) values (?,?)", 
 			metrica.getNome(), 
 			metrica.getCreated());
 	}
