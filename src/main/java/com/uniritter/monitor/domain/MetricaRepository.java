@@ -1,5 +1,6 @@
 package com.uniritter.monitor.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,13 +18,19 @@ public class MetricaRepository {
 	public List<Metrica> getMetricas() {
 		return this.metricaDao.getMetricas();
 	}
+	
+	public List<Metrica> getMetrica(long id) {
+		List<Metrica> list = new ArrayList<Metrica>();
+		list.add(this.metricaDao.getMetrica(id));
+		return list;
+	}
 
 	public Metrica createMetrica(String nomeMetrica) {
 		
 		Metrica nova = new Metrica(
 				null,
 				nomeMetrica, new Date());
-		metricaDao.createMetrica(nova);
+		nova.setId((long)metricaDao.createMetrica(nova));
 		return nova;
 	}
 

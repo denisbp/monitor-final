@@ -11,9 +11,9 @@ public class MetricaService {
 	@Autowired
 	MetricaRepository repository;
 	
-	public List<Metrica> getMetricas() {
+	public List<Metrica> getMetricas(int id) {
 		
-		return repository.getMetricas();
+		return (id <= 0) ? repository.getMetricas() : repository.getMetrica(id);
 		
 	}
 
